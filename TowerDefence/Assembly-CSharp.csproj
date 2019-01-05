@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Pluggins\VSCode.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Study Material/repos/TowerDefenceGame/TowerDefence/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
