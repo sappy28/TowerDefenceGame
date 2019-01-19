@@ -5,6 +5,9 @@ TextureImporter:
     21300000: rockTower
     21300002: CastleTower
     21300004: knightTower
+    21300006: ScoreBoard
+    21300008: PlayButton
+    21300010: TowerDisplay
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -146,13 +149,73 @@ TextureImporter:
         width: 168
         height: 208
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 80467eea42bb01147b22e13c2063dc1a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScoreBoard
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 1183
+        width: 249
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e8393ddd559b7b4387ac8c0d02a0771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayButton
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 1419
+        width: 375
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4247bc3bbff18a4a967e3a2372ecde0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TowerDisplay
+      rect:
+        serializedVersion: 2
+        x: 1545
+        y: 2264
+        width: 64
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d82153a3a7671fd4288e1751ccc14166
       vertices: []
       indices: 
       edges: []
