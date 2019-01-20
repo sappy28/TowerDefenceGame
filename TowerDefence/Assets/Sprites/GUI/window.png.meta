@@ -7,7 +7,7 @@ TextureImporter:
     21300004: window_1
     21300006: window_2
     21300008: window_3
-    21300010: window_4
+    21300010: Exit
     21300012: window_5
     21300014: window_6
     21300016: window_7
@@ -72,6 +72,7 @@ TextureImporter:
     21300134: window_66
     21300136: window_67
     21300138: window_68
+    21300140: Resume
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -245,13 +246,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: window_4
+      name: Exit
       rect:
         serializedVersion: 2
-        x: 94
-        y: 6390
-        width: 568
-        height: 678
+        x: 241
+        y: 6496
+        width: 275
+        height: 123
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1540,6 +1541,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5d5a724fbc2643d4ca449e3e0cdb7f47
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resume
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 6790
+        width: 281
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb631bb1603e844fa9fb7439e45163e
       vertices: []
       indices: 
       edges: []

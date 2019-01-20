@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
     
@@ -14,11 +15,12 @@ public class Enemy : MonoBehaviour {
 	private Animator anim;
     private float navigationTime = 0;
 	private bool isDead = false;
-	
+
 	public bool IsDead
 	{
 		get { return isDead; }
 	}
+
 	// Use this for initialization
 	void Start () {
 	    enemy = GetComponent<Transform> ();
@@ -60,7 +62,8 @@ public class Enemy : MonoBehaviour {
 		else if (other.tag == "Projectile")
 		{
 			Projectile newP = other.gameObject.GetComponent<Projectile>();
-			enemyHit(newP.AttackStrength);
+			int hitpoint = newP.AttackStrength;
+			enemyHit(hitpoint);
 			Destroy(other.gameObject);
 		}
     }
@@ -89,4 +92,5 @@ public class Enemy : MonoBehaviour {
 		GameManager.Instance.addMoney(rewardPoints);
 		GameManager.Instance.isWaveOver();
 	}
+
 }

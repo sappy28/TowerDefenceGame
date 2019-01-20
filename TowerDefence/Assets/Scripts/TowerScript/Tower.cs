@@ -62,8 +62,7 @@ public class Tower : MonoBehaviour {
 		else if (newprojectile.ProjectileType == proType.rock)
 		{ GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Rock); }
 
-
-		if (targetEnemy == null)
+		if (targetEnemy == null || targetEnemy.IsDead)
         {
             Destroy(newprojectile);
         }
@@ -71,6 +70,7 @@ public class Tower : MonoBehaviour {
 		{
 			StartCoroutine(MoveProjectile(newprojectile)); 
 		}
+		
     }
 
 	IEnumerator MoveProjectile (Projectile projectile)

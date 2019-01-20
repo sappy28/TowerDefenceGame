@@ -15,17 +15,24 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] private Text currentWaveLbl;
 	[SerializeField] private Text totalEscapeLbl;
 	[SerializeField] private Text playBtnLbl;
+	[SerializeField] private Text resultLbl;
+	[SerializeField] private Text winlogoLbl;
+	[SerializeField] private Image Result;
+	[SerializeField] private Image Logo;
+	[SerializeField] private Image Pause;
 	[SerializeField] private Button playBtn;
 	[SerializeField] private GameObject spawnPoint;
 	[SerializeField] private Enemy[] enemies;
 	[SerializeField] private int totalEnemies = 3;
 	[SerializeField] private int enemiesPerSpawn;
 
-	private int waveNumber = 0;
-	private int totalMoney = 15;
+	private int waveNumber = 1;
+	private int totalMoney = 12;
 	private int totalEscape = 0;
 	private int roundEscape = 0;
 	private int roundKilled = 0;
+	private int totalKilled = 0;
+	private int gameScore = 0;
 	private int whichEnemiesToSpawn = 0;
 	const float spawnDelay = 0.5f;
 	private int enemiesToSpawn = 0;
@@ -68,6 +75,7 @@ public class GameManager : Singleton<GameManager>
 		set
 		{
 			roundKilled = value;
+			totalKilled = totalKilled + roundKilled;
 		}
 	}
 
@@ -96,8 +104,29 @@ public class GameManager : Singleton<GameManager>
 	void Start()
 	{
 		playBtn.gameObject.SetActive(false);
+		Result.gameObject.SetActive(false);
+		Logo.gameObject.SetActive(false);
+		Pause.gameObject.SetActive(false);
 		showMenu();
 		audioSource = GetComponent<AudioSource>();
+	}
+
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+				Result.gameObject.SetActive(true);
+				Logo.gameObject.SetActive(true);
+				Pause.gameObject.SetActive(true);
+			}
+			else if (Time.timeScale == 0)
+			{
+				resumeBtnPressed();
+			}
+		}
 	}
 
 	IEnumerator spawn()
@@ -191,21 +220,28 @@ public class GameManager : Singleton<GameManager>
 			case gameState.gameover:
 				audioSource.PlayOneShot(SoundManager.Instance.GameOver);
 				playBtnLbl.text = "Game Over! Play Again!";
+				resultLbl.text = "Score " + ((2 * totalKilled) - totalEscape);
 				break;
 
 			case gameState.next:
 				playBtnLbl.text = "Next Wave";
+				resultLbl.text = "Score " + ((2 * totalKilled) - totalEscape);
 				break;
 
 			case gameState.play:
 				playBtnLbl.text = "Play";
+				resultLbl.text = "Score " + ((2 * totalKilled) - totalEscape);
 				break;
 
 			case gameState.win:
-				playBtnLbl.text = "WIN! Play Again ";
+				playBtnLbl.text = "Play Again ";
+				winlogoLbl.text = "WINNER";
+				resultLbl.text = "Score " + (((2 * totalKilled) + totalMoney) - totalEscape);
 				break;
 		}
 		playBtn.gameObject.SetActive(true);
+		Result.gameObject.SetActive(true);
+		Logo.gameObject.SetActive(true);
 	}
 
 	public void playBtnPressed()
@@ -218,11 +254,13 @@ public class GameManager : Singleton<GameManager>
 				break;
 
 			default:
-				waveNumber = 0;
+				waveNumber = 1;
 				totalEnemies = 3;
 				TotalEscape = 0;
-				TotalMoney = 15;
+				TotalMoney = 12;
 				enemiesToSpawn = 0;
+				gameScore = 0;
+				totalKilled = 0;
 				TowerManager.Instance.DestroyAllTower();
 				TowerManager.Instance.RenameTagBuildSites();
 				totalMoneyLbl.text = TotalMoney.ToString();
@@ -234,8 +272,23 @@ public class GameManager : Singleton<GameManager>
 		DestroyAllEnemies();
 		RoundEscape = 0;
 		RoundKilled = 0;
-		currentWaveLbl.text = "Wave " + (waveNumber + 1);
+		currentWaveLbl.text = "Wave " + (waveNumber) + "/10";
 		StartCoroutine(spawn());
 		playBtn.gameObject.SetActive(false);
+		Result.gameObject.SetActive(false);
+		Logo.gameObject.SetActive(false);
+	}
+
+	public void resumeBtnPressed()
+	{
+		Time.timeScale = 1;
+		Result.gameObject.SetActive(false);
+		Logo.gameObject.SetActive(false);
+		Pause.gameObject.SetActive(false);
+	}
+
+	public void exitBtnPressed()
+	{
+		Application.Quit();
 	}
 }
